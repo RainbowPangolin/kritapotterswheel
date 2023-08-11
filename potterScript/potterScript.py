@@ -9,8 +9,6 @@ class MyClass:
 canvas = Krita.instance().activeWindow().activeView().canvas()
 
 curRotation = 0
-global rotationSize
-
 rotationSize = 1
 
 def on_timer_timeout():
@@ -37,8 +35,10 @@ def stop_timer():
     canvas.setRotation(0) #Reset orientation
     print('timer stopped')
 
-def myFunc():
-    print('asdf')
+def myFunc(newSize):
+    global rotationSize
+
+    rotationSize = newSize / 10
     
 mainBox = QGroupBox() #put box inside docker when ported to docker
 layoutForButtons = QHBoxLayout()
@@ -51,6 +51,7 @@ speedSlider.setMinimum(1)
 speedSlider.setMaximum(100)
 speedSlider.setTickPosition(QSlider.TicksBelow)
 speedSlider.setTickInterval(5)
+speedSlider.setValue(10)
 speedSlider.valueChanged.connect(myFunc)
 
 
