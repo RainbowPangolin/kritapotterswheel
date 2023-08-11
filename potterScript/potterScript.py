@@ -59,10 +59,10 @@ print(speedSlider.value())
 layoutForButtons.addWidget(speedSlider)
 
 # add button and layout for button
-newStartButton = QPushButton("Start me") 
+newStartButton = QPushButton("Start") 
 layoutForButtons.addWidget(newStartButton)
 
-newStopButton = QPushButton("Stop me") 
+newStopButton = QPushButton("Stop") 
 layoutForButtons.addWidget(newStopButton)
 
 # hook up the buttons 
