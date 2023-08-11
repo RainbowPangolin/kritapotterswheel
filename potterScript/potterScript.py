@@ -2,6 +2,10 @@ from krita import *
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QDialog, QHBoxLayout, QPushButton
 
+class MyClass:
+    def __init__(self):
+        pass
+
 canvas = Krita.instance().activeWindow().activeView().canvas()
 
 curRotation = 0
@@ -69,5 +73,6 @@ newStopButton.clicked.connect(stop_timer)
 newDialog = QDialog() 
 newDialog.setLayout(layoutForButtons)
 newDialog.setWindowTitle("New Dialog Title!") 
-newDialog.show() # show the dialog
 
+def showDialog():
+    newDialog.show() # show the dialog
