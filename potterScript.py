@@ -5,11 +5,15 @@ from PyQt5.QtWidgets import QDialog, QHBoxLayout, QPushButton
 canvas = Krita.instance().activeWindow().activeView().canvas()
 
 curRotation = 0
+global rotationSize
+
+rotationSize = 1
 
 def on_timer_timeout():
     global curRotation  # Declare 'curRotation' as a global variable
-    curRotation = curRotation + 1
+    curRotation = curRotation + rotationSize
     canvas.setRotation(curRotation)
+    
     print("Timer timeout event occurred.")
     
 timer = QTimer()
@@ -29,11 +33,28 @@ def stop_timer():
     canvas.setRotation(0) #Reset orientation
     print('timer stopped')
 
-
+def myFunc():
+    print('asdf')
+    
 mainBox = QGroupBox() #put box inside docker when ported to docker
+layoutForButtons = QHBoxLayout()
+
+
+#Add slider for speed changing
+
+speedSlider = QSlider(Qt.Horizontal)
+speedSlider.setMinimum(1)
+speedSlider.setMaximum(100)
+speedSlider.setTickPosition(QSlider.TicksBelow)
+speedSlider.setTickInterval(5)
+speedSlider.valueChanged.connect(myFunc)
+
+
+print(speedSlider.value())
+
+layoutForButtons.addWidget(speedSlider)
 
 # add button and layout for button
-layoutForButtons = QHBoxLayout()
 newStartButton = QPushButton("Start me") 
 layoutForButtons.addWidget(newStartButton)
 
