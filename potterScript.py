@@ -26,7 +26,11 @@ def start_timer():
 
 def stop_timer():
     timer.stop()   # Stop the timer
+    canvas.setRotation(0) #Reset orientation
     print('timer stopped')
+
+
+mainBox = QGroupBox() #put box inside docker when ported to docker
 
 # add button and layout for button
 layoutForButtons = QHBoxLayout()
@@ -36,7 +40,7 @@ layoutForButtons.addWidget(newStartButton)
 newStopButton = QPushButton("Stop me") 
 layoutForButtons.addWidget(newStopButton)
 
-# hook up the button to an 
+# hook up the buttons 
 newStartButton.clicked.connect(start_timer)
 newStopButton.clicked.connect(stop_timer)
 
