@@ -55,8 +55,6 @@ speedSlider.setValue(10)
 speedSlider.valueChanged.connect(myFunc)
 
 
-print(speedSlider.value())
-
 layoutForButtons.addWidget(speedSlider)
 
 # add button and layout for button
