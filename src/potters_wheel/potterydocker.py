@@ -19,4 +19,6 @@ class PotteryDocker(DockWidget):
     def canvasChanged(self, canvas):
         if (canvas != None):
             self.wheelControlPanelInstance.initializeCanvasTo(canvas)
+            self.setWidget(self.wheelControlPanelInstance.widget)
+
 

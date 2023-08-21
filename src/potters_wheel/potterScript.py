@@ -4,10 +4,7 @@ from PyQt5.QtWidgets import QHBoxLayout, QPushButton
 
 class WheelControlPanel:
     def __init__(self):
-        self.canvas = None
-        self.wheelController = PotteryWheelComponent(None)
-        controlsContainer = self.returnWidget()
-        self.widget = controlsContainer
+        self.initializeWheelUsing(None)
 
     def initializeCanvasTo(self, canvas):
         self.canvas = canvas
@@ -15,6 +12,8 @@ class WheelControlPanel:
           
     def initializeWheelUsing(self, canvas):
         self.wheelController = PotteryWheelComponent(canvas)
+        controlsContainer = self.returnWidget()
+        self.widget = controlsContainer
 
     def returnWidget(self):
         mainBox = QGroupBox() #put box inside docker when ported to docker
@@ -27,6 +26,8 @@ class WheelControlPanel:
         speedSlider.setTickPosition(QSlider.TicksBelow)
         speedSlider.setTickInterval(5)
         speedSlider.setValue(10)
+        try: speedSlider.valueChanged.disconnect()
+        except: pass
         speedSlider.valueChanged.connect(self.wheelController.changeSize)
 
 
@@ -40,6 +41,13 @@ class WheelControlPanel:
         layoutForButtons.addWidget(newStopButton)
 
         # hook up the buttons 
+
+        try:
+            # Disconnect the previous connection (if one exists)
+            newStartButton.clicked.disconnect()
+            newStopButton.clicked.disconnect()
+
+        except: pass
         newStartButton.clicked.connect(self.wheelController.start_timer)
         newStopButton.clicked.connect(self.wheelController.stop_timer)
 
