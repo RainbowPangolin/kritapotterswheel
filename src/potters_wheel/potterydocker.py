@@ -3,13 +3,12 @@ from .potterScript import WheelControlPanel
 
 DOCKER_TITLE = 'Pottery Wheel'
 
-class DockerTemplate(DockWidget):
+class PotteryDocker(DockWidget):
 
     def __init__(self):
         super().__init__()
 
         self.wheelControlPanelInstance = WheelControlPanel()
-
 
         self.setWindowTitle(DOCKER_TITLE)
         
