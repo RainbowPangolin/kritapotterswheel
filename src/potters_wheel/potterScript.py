@@ -6,6 +6,9 @@ class WheelControlPanel:
     def __init__(self):
         controlsContainer = returnWidget()
         self.widget = controlsContainer
+
+    def initializeCanvasTo(self, canvas):
+        self.canvas = canvas
           
 def returnWidget():
     mainBox = QGroupBox() #put box inside docker when ported to docker
