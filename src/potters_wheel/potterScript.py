@@ -39,6 +39,8 @@ def returnWidget():
     newDialog.setLayout(layoutForButtons)
     newDialog.setWindowTitle("New Dialog Title!") 
 
+    mainBox.setLayout(layoutForButtons)
+
     return mainBox
 
 def showDialog():
