@@ -4,83 +4,69 @@ from PyQt5.QtWidgets import QDialog, QHBoxLayout, QPushButton
 
 class WheelControlPanel:
     def __init__(self):
-        controlsContainer = returnWidget()
+        controlsContainer = self.returnWidget()
         self.widget = controlsContainer
 
     def initializeCanvasTo(self, canvas):
         self.canvas = canvas
+        self.initializeWheelUsing(canvas)
           
-def returnWidget():
-    mainBox = QGroupBox() #put box inside docker when ported to docker
-    layoutForButtons = QHBoxLayout()
+    def initializeWheelUsing(self, canvas):
+        self.wheelController = PotteryWheelComponent(canvas)
 
-    #Add slider for speed changing
-    speedSlider = QSlider(Qt.Horizontal)
-    speedSlider.setMinimum(1)
-    speedSlider.setMaximum(100)
-    speedSlider.setTickPosition(QSlider.TicksBelow)
-    speedSlider.setTickInterval(5)
-    speedSlider.setValue(10)
-    speedSlider.valueChanged.connect(myFunc)
+    def returnWidget(self):
+        mainBox = QGroupBox() #put box inside docker when ported to docker
+        layoutForButtons = QHBoxLayout()
 
-
-    layoutForButtons.addWidget(speedSlider)
-
-    # add button and layout for button
-    newStartButton = QPushButton("Start") 
-    layoutForButtons.addWidget(newStartButton)
-
-    newStopButton = QPushButton("Stop") 
-    layoutForButtons.addWidget(newStopButton)
-
-    # hook up the buttons 
-    newStartButton.clicked.connect(start_timer)
-    newStopButton.clicked.connect(stop_timer)
-
-    # create dialog  and show it
-    newDialog = QDialog() 
-    newDialog.setLayout(layoutForButtons)
-    newDialog.setWindowTitle("New Dialog Title!") 
-
-    mainBox.setLayout(layoutForButtons)
-
-    return mainBox
-
-def showDialog():
-    newDialog.show() # show the dialog
+        #Add slider for speed changing
+        speedSlider = QSlider(Qt.Horizontal)
+        speedSlider.setMinimum(1)
+        speedSlider.setMaximum(100)
+        speedSlider.setTickPosition(QSlider.TicksBelow)
+        speedSlider.setTickInterval(5)
+        speedSlider.setValue(10)
+        speedSlider.valueChanged.connect(self.wheelController.changeSize)
 
 
-canvas = Krita.instance().activeWindow().activeView().canvas()
+        layoutForButtons.addWidget(speedSlider)
 
-curRotation = 0
-rotationSize = 1
+        # add button and layout for button
+        newStartButton = QPushButton("Start") 
+        layoutForButtons.addWidget(newStartButton)
 
-def on_timer_timeout():
-    global curRotation  # Declare 'curRotation' as a global variable
-    curRotation = curRotation + rotationSize
-    canvas.setRotation(curRotation)
-    
-    print("Timer timeout event occurred.")
-    
-timer = QTimer()
+        newStopButton = QPushButton("Stop") 
+        layoutForButtons.addWidget(newStopButton)
 
-timer.timeout.connect(on_timer_timeout)
+        # hook up the buttons 
+        newStartButton.clicked.connect(self.wheelController.start_timer)
+        newStopButton.clicked.connect(self.wheelController.stop_timer)
 
-# Set the interval in milliseconds (e.g., 10 ms)
-interval = 10
-    
-def start_timer():
-    timer.start(interval)
-    print('timer started')
+        mainBox.setLayout(layoutForButtons)
+
+        return mainBox
 
 
-def stop_timer():
-    timer.stop()   # Stop the timer
-    canvas.setRotation(0) #Reset orientation
-    print('timer stopped')
+class PotteryWheelComponent():
+    def __init__(self, canvas):
+        self.canvas = canvas
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.on_timer_timeout)
+        self.curRotation = 0
+        self.rotationSize = 1
+        self.rotationInterval = 10
 
-def myFunc(newSize):
-    global rotationSize
+    def on_timer_timeout(self):
+        self.curRotation = self.curRotation + self.rotationSize
+        self.canvas.setRotation(self.curRotation)
+        
+    def start_timer(self):
+        self.timer.start(self.rotationInterval)
 
-    rotationSize = newSize / 10
-    
+    def stop_timer(self):
+        self.timer.stop()   # Stop the timer
+        self.canvas.setRotation(0) # Reset orientation
+
+    def changeSize(self, newSize):
+        self.rotationSize = newSize / 10
+        
+
