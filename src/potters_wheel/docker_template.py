@@ -1,7 +1,7 @@
 from krita import DockWidget
 from .potterScript import WheelControlPanel
 
-DOCKER_TITLE = 'Blank Template Docker'
+DOCKER_TITLE = 'Pottery Wheel'
 
 class DockerTemplate(DockWidget):
 
