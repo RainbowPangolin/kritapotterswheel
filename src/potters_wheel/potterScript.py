@@ -1,9 +1,11 @@
 from krita import *
 from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QDialog, QHBoxLayout, QPushButton
+from PyQt5.QtWidgets import QHBoxLayout, QPushButton
 
 class WheelControlPanel:
     def __init__(self):
+        self.canvas = None
+        self.wheelController = PotteryWheelComponent(None)
         controlsContainer = self.returnWidget()
         self.widget = controlsContainer
 
