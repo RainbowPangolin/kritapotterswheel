@@ -2,9 +2,48 @@ from krita import *
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QDialog, QHBoxLayout, QPushButton
 
-class MyClass:
+class WheelControlPanel:
     def __init__(self):
-        pass
+        controlsContainer = returnWidget()
+        self.widget = controlsContainer
+          
+def returnWidget():
+    mainBox = QGroupBox() #put box inside docker when ported to docker
+    layoutForButtons = QHBoxLayout()
+
+    #Add slider for speed changing
+    speedSlider = QSlider(Qt.Horizontal)
+    speedSlider.setMinimum(1)
+    speedSlider.setMaximum(100)
+    speedSlider.setTickPosition(QSlider.TicksBelow)
+    speedSlider.setTickInterval(5)
+    speedSlider.setValue(10)
+    speedSlider.valueChanged.connect(myFunc)
+
+
+    layoutForButtons.addWidget(speedSlider)
+
+    # add button and layout for button
+    newStartButton = QPushButton("Start") 
+    layoutForButtons.addWidget(newStartButton)
+
+    newStopButton = QPushButton("Stop") 
+    layoutForButtons.addWidget(newStopButton)
+
+    # hook up the buttons 
+    newStartButton.clicked.connect(start_timer)
+    newStopButton.clicked.connect(stop_timer)
+
+    # create dialog  and show it
+    newDialog = QDialog() 
+    newDialog.setLayout(layoutForButtons)
+    newDialog.setWindowTitle("New Dialog Title!") 
+
+    return mainBox
+
+def showDialog():
+    newDialog.show() # show the dialog
+
 
 canvas = Krita.instance().activeWindow().activeView().canvas()
 
@@ -40,38 +79,3 @@ def myFunc(newSize):
 
     rotationSize = newSize / 10
     
-mainBox = QGroupBox() #put box inside docker when ported to docker
-layoutForButtons = QHBoxLayout()
-
-
-#Add slider for speed changing
-
-speedSlider = QSlider(Qt.Horizontal)
-speedSlider.setMinimum(1)
-speedSlider.setMaximum(100)
-speedSlider.setTickPosition(QSlider.TicksBelow)
-speedSlider.setTickInterval(5)
-speedSlider.setValue(10)
-speedSlider.valueChanged.connect(myFunc)
-
-
-layoutForButtons.addWidget(speedSlider)
-
-# add button and layout for button
-newStartButton = QPushButton("Start") 
-layoutForButtons.addWidget(newStartButton)
-
-newStopButton = QPushButton("Stop") 
-layoutForButtons.addWidget(newStopButton)
-
-# hook up the buttons 
-newStartButton.clicked.connect(start_timer)
-newStopButton.clicked.connect(stop_timer)
-
-# create dialog  and show it
-newDialog = QDialog() 
-newDialog.setLayout(layoutForButtons)
-newDialog.setWindowTitle("New Dialog Title!") 
-
-def showDialog():
-    newDialog.show() # show the dialog
