@@ -83,7 +83,7 @@ class PotteryWheelComponent():
 
     
     def changeTimerInterval(self, interval):
-        self.stop_timer
-        self.rotationInterval = interval/100
-        self.start_timer
+        self.stop_timer()
+        self.rotationInterval = interval / 100
+        self.start_timer()
 
