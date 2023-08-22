@@ -28,8 +28,7 @@ class WheelControlPanel:
         speedSlider.setValue(10)
         try: speedSlider.valueChanged.disconnect()
         except: pass
-        # speedSlider.valueChanged.connect(self.wheelController.changeSize)
-        speedSlider.valueChanged.connect(self.wheelController.changeTimerInterval)
+        speedSlider.valueChanged.connect(self.wheelController.changeSize)
 
 
         layoutForButtons.addWidget(speedSlider)
@@ -84,6 +83,6 @@ class PotteryWheelComponent():
     
     def changeTimerInterval(self, interval):
         self.stop_timer()
-        self.rotationInterval = interval / 100
+        self.rotationInterval = interval / 10
         self.start_timer()
 
