@@ -28,32 +28,34 @@ class WheelControlPanel:
         speedSlider.setValue(10)
         try: speedSlider.valueChanged.disconnect()
         except: pass
-        speedSlider.valueChanged.connect(self.wheelController.changeSize)
+        # speedSlider.valueChanged.connect(self.wheelController.changeSize)
+        speedSlider.valueChanged.connect(self.wheelController.changeTimerInterval)
 
 
         layoutForButtons.addWidget(speedSlider)
 
         # add button and layout for button
-        newStartButton = QPushButton("Start") 
-        layoutForButtons.addWidget(newStartButton)
+        self.startButton = QPushButton("Start") 
+        layoutForButtons.addWidget(self.startButton)
 
-        newStopButton = QPushButton("Stop") 
-        layoutForButtons.addWidget(newStopButton)
+        self.stopButton = QPushButton("Stop") 
+        layoutForButtons.addWidget(self.stopButton)
 
         # hook up the buttons 
 
         try:
             # Disconnect the previous connection (if one exists)
-            newStartButton.clicked.disconnect()
-            newStopButton.clicked.disconnect()
-
+            self.startButton.clicked.disconnect()
+            self.stopButton.clicked.disconnect()
         except: pass
-        newStartButton.clicked.connect(self.wheelController.start_timer)
-        newStopButton.clicked.connect(self.wheelController.stop_timer)
+
+        self.startButton.clicked.connect(self.wheelController.start_timer)
+        self.stopButton.clicked.connect(self.wheelController.stop_timer)
 
         mainBox.setLayout(layoutForButtons)
 
         return mainBox
+
 
 
 class PotteryWheelComponent():
@@ -78,5 +80,10 @@ class PotteryWheelComponent():
 
     def changeSize(self, newSize):
         self.rotationSize = newSize / 10
-        
+
+    
+    def changeTimerInterval(self, interval):
+        self.stop_timer
+        self.rotationInterval = interval/100
+        self.start_timer
 
