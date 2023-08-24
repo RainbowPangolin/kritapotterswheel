@@ -1,6 +1,6 @@
 from krita import *
 from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QGridLayout
+from PyQt5.QtWidgets import QSpacerItem, QSizePolicy, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QGridLayout
 
 class WheelControlPanel:
     def __init__(self):
@@ -39,7 +39,10 @@ class WheelControlPanel:
 
         label_left = QLabel('Slower')
         label_right = QLabel('Faster')
+        spacer = QSpacerItem(0, 0, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
         layoutForLabels.addWidget(label_left)
+        layoutForLabels.addItem(spacer)
         layoutForLabels.addWidget(label_right)
         boxForLabels.setLayout(layoutForLabels)
 
