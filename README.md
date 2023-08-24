@@ -14,7 +14,7 @@ You might have seen those videos of artists painting onto spinning pottery wheel
 ## Known issues
 
 - My lines are jittery!
-  - Due to the way the plugin currently works (using Krita's inbuilt rotation system to rotate a tiny amount every few milliseconds), this is unavoidable. **Use the brush stabilizer to smooth out the lines.** I'm working on a solution to make raw inputs nicer, but it will take time.
+  - Due to the way the plugin currently works (using Krita's inbuilt rotation system to rotate a tiny amount every few milliseconds), this is unavoidable. **Use the brush stabilizer to smooth out the lines.** Unfortunately, this introduces noticable input delay due to how the stabilizer works. I'm working on a solution to make raw inputs nicer, but it will take time.
 
 ## Misc
 
