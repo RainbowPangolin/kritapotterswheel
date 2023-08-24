@@ -1,6 +1,6 @@
 from krita import *
 from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QHBoxLayout, QPushButton
+from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QGridLayout
 
 class WheelControlPanel:
     def __init__(self):
@@ -16,8 +16,12 @@ class WheelControlPanel:
         self.widget = controlsContainer
 
     def returnWidget(self):
-        mainBox = QGroupBox() #put box inside docker when ported to docker
+        boxForContainers = QGroupBox() #put box inside docker when ported to docker
+        boxForButtons = QGroupBox()
+        boxForLabels = QGroupBox()
+        layoutForContainers = QVBoxLayout()
         layoutForButtons = QHBoxLayout()
+        layoutForLabels = QHBoxLayout()
 
         #Add slider for speed changing
         speedSlider = QSlider(Qt.Horizontal)
@@ -31,14 +35,20 @@ class WheelControlPanel:
         speedSlider.valueChanged.connect(self.wheelController.changeSize)
 
 
-        layoutForButtons.addWidget(speedSlider)
+
+
+        label_left = QLabel('Slower')
+        label_right = QLabel('Faster')
+        layoutForLabels.addWidget(label_left)
+        layoutForLabels.addWidget(label_right)
+        boxForLabels.setLayout(layoutForLabels)
 
         # add button and layout for button
         self.startButton = QPushButton("Start") 
-        layoutForButtons.addWidget(self.startButton)
-
         self.stopButton = QPushButton("Stop") 
+        layoutForButtons.addWidget(self.startButton)
         layoutForButtons.addWidget(self.stopButton)
+        boxForButtons.setLayout(layoutForButtons)
 
         # hook up the buttons 
 
@@ -51,9 +61,13 @@ class WheelControlPanel:
         self.startButton.clicked.connect(self.wheelController.start_timer)
         self.stopButton.clicked.connect(self.wheelController.stop_timer)
 
-        mainBox.setLayout(layoutForButtons)
+        layoutForContainers.addWidget(boxForButtons)
+        layoutForContainers.addWidget(speedSlider)
+        layoutForContainers.addWidget(boxForLabels)
 
-        return mainBox
+        boxForContainers.setLayout(layoutForContainers)
+
+        return boxForContainers
 
 
 
