@@ -4,8 +4,11 @@
 
 You might have seen those videos of artists painting onto spinning pottery wheels. This plugin rotates the canvas continuously, allowing you to achieve the same effect.
 
-## FAQ
+## Installation
 
+Like most Krita plugins, either download the zip directly from gitHub [here]() and use Krita's Script Importer Plugin (Tools > Scripts > Import Python Plugin From File...), or copy the contents of the `src` directory (a folder and a .desktop file) into your `C:\Users\[USER]\AppData\Roaming\krita\pykrita` directory.
+
+## FAQ
 
 - How does this work?
   - This plugin gives you two buttons to start and stop the rotation, and a slider to change the speed of the rotation. When you press start, the canvas immediately starts rotating, and you can draw onto the spinning canvas.
