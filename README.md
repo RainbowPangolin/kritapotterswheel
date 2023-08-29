@@ -8,7 +8,7 @@ You might have seen those videos of artists painting onto spinning pottery wheel
 
 ## Installation
 
-Like most Krita plugins, either download the zip directly from gitHub [here]() and use Krita's Script Importer Plugin (Tools > Scripts > Import Python Plugin From File...), or copy the contents of the `src` directory (a folder and a .desktop file) into your `C:\Users\[USER]\AppData\Roaming\krita\pykrita` directory. Restart to load the plugin.
+Like most Krita plugins, either download the zip directly from gitHub [here](https://github.com/RainbowPangolin/kritapotterswheel/raw/main/potterywheel.zip) and use Krita's Script Importer Plugin (Tools > Scripts > Import Python Plugin From File...), or copy the contents of this repo's `src` directory (a folder and a .desktop file) into your `C:\Users\[USER]\AppData\Roaming\krita\pykrita` directory. Restart to load the plugin.
 
 ## FAQ
 
