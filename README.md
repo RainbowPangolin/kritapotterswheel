@@ -4,7 +4,7 @@
 
 You might have seen those videos of artists painting onto spinning pottery wheels. This plugin rotates the canvas continuously, allowing you to achieve the same effect.
 
-![Pottery Wheel Demo](https://i.imgur.com/VUODkJp.mp4)
+![Pottery Wheel Demo](kritapotterywheeldemo.gif)
 
 ## Installation
 
