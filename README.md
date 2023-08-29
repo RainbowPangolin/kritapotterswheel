@@ -4,6 +4,8 @@
 
 You might have seen those videos of artists painting onto spinning pottery wheels. This plugin rotates the canvas continuously, allowing you to achieve the same effect.
 
+![Pottery Wheel Demo](https://i.imgur.com/VUODkJp.mp4)
+
 ## Installation
 
 Like most Krita plugins, either download the zip directly from gitHub [here]() and use Krita's Script Importer Plugin (Tools > Scripts > Import Python Plugin From File...), or copy the contents of the `src` directory (a folder and a .desktop file) into your `C:\Users\[USER]\AppData\Roaming\krita\pykrita` directory.
