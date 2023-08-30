@@ -13,7 +13,7 @@ Like most Krita plugins, either download the zip directly from gitHub [here](htt
 ## FAQ
 
 - How does this work?
-  - This plugin creates a docker which hastwo buttons to start and stop the rotation, and a slider to change the speed of the rotation. When you press start, the canvas immediately starts rotating, and you can draw onto the spinning canvas.
+  - This plugin creates a docker which has two buttons to start and stop the rotation, and a slider to change the speed of the rotation. When you press start, the canvas immediately starts rotating, and you can draw onto the spinning canvas.
 
 
 ## Known issues

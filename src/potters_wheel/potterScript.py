@@ -67,6 +67,11 @@ class WheelControlPanel:
         layoutForContainers.addWidget(boxForButtons)
         layoutForContainers.addWidget(speedSlider)
         layoutForContainers.addWidget(boxForLabels)
+        
+        
+        reverseRotationButton = QPushButton("Reverse Rotation")
+        reverseRotationButton.clicked.connect(self.wheelController.reverseRotation)
+        layoutForContainers.addWidget(reverseRotationButton)
 
         boxForContainers.setLayout(layoutForContainers)
 
@@ -82,9 +87,10 @@ class PotteryWheelComponent():
         self.curRotation = 0
         self.rotationSize = 1
         self.rotationInterval = 10
+        self.direction = 1
 
     def on_timer_timeout(self):
-        self.curRotation = self.curRotation + self.rotationSize
+        self.curRotation = self.curRotation + (self.direction * self.rotationSize) # direction is -1 or 1
         self.canvas.setRotation(self.curRotation)
         
     def start_timer(self):
@@ -97,6 +103,8 @@ class PotteryWheelComponent():
     def changeSize(self, newSize):
         self.rotationSize = newSize / 10
 
+    def reverseRotation(self):
+        self.direction = self.direction * -1
     
     def changeTimerInterval(self, interval):
         self.stop_timer()
