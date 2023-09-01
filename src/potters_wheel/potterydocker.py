@@ -17,8 +17,8 @@ class PotteryDocker(DockWidget):
     # notifies when views are added or removed
     # 'pass' means do not do anything
     def canvasChanged(self, canvas):
-        if (canvas != None):
-            self.wheelControlPanelInstance.initializeCanvasTo(canvas)
-            self.setWidget(self.wheelControlPanelInstance.widget)
+        # if (canvas != None):
+        self.wheelControlPanelInstance.initializeWheelUsing(canvas)
+        self.setWidget(self.wheelControlPanelInstance.widget)
 
 

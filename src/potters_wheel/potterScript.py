@@ -7,10 +7,17 @@ class WheelControlPanel:
         self.initializeWheelUsing(None)
 
     def initializeCanvasTo(self, canvas):
-        self.canvas = canvas
+        if(canvas is None):
+            self.canvas = DummyCanvas()
+        else:
+            self.canvas = canvas
         self.initializeWheelUsing(canvas)
           
     def initializeWheelUsing(self, canvas):
+        if(canvas is None):
+            self.canvas = DummyCanvas()
+        else:
+            self.canvas = canvas
         self.wheelController = PotteryWheelComponent(canvas)
         controlsContainer = self.returnWidget()
         self.widget = controlsContainer
@@ -49,6 +56,14 @@ class WheelControlPanel:
         # add button and layout for button
         self.startButton = QPushButton("Start") 
         self.stopButton = QPushButton("Stop") 
+
+        if(self.canvas is None):
+            self.startButton.setEnabled(False)
+            self.stopButton.setEnabled(False)
+        else:
+            self.startButton.setEnabled(True)
+            self.stopButton.setEnabled(True)
+
         layoutForButtons.addWidget(self.startButton)
         layoutForButtons.addWidget(self.stopButton)
         boxForButtons.setLayout(layoutForButtons)
@@ -110,4 +125,12 @@ class PotteryWheelComponent():
         self.stop_timer()
         self.rotationInterval = interval / 10
         self.start_timer()
+
+# Dummy canvas for when canvas is NoneType. Avoids having to tediously check for existence of a canvas everywhere.
+class DummyCanvas():
+    def __init__(self):
+        pass 
+
+    def setRotation():
+        pass
 
