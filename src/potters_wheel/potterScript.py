@@ -54,10 +54,11 @@ class WheelControlPanel:
         boxForLabels.setLayout(layoutForLabels)
 
         # add button and layout for button
+
         self.startButton = QPushButton("Start") 
         self.stopButton = QPushButton("Stop") 
 
-        if(self.canvas is None):
+        if isinstance(self.canvas, DummyCanvas):
             self.startButton.setEnabled(False)
             self.stopButton.setEnabled(False)
         else:
